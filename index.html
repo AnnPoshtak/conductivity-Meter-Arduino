@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Кондуктометр — Лабораторний журнал</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <h1>Кондуктометр / Вимірювання провідності</h1>
+    </div>
+
+    <div id="measureScreen" class="workspace">
+      <div class="panel">
+        <span class="label-sm">Зразок</span>
+        <div class="sample-list" id="sampleList">
+          <button class="sample-item active" data-id="tap" data-name="Вода з-під крана">
+            <span>1. Вода з-під крана</span>
+            <span class="val-pill" id="pill-tap">—</span>
+          </button>
+          <button class="sample-item" data-id="salt" data-name="Солона вода">
+            <span>2. Солона вода</span>
+            <span class="val-pill" id="pill-salt">—</span>
+          </button>
+          <button class="sample-item" data-id="soda" data-name="Вода з содою">
+            <span>3. Вода з содою</span>
+            <span class="val-pill" id="pill-soda">—</span>
+          </button>
+          <button class="sample-item" data-id="sugar" data-name="Вода з цукром">
+            <span>4. Вода з цукром</span>
+            <span class="val-pill" id="pill-sugar">—</span>
+          </button>
+        </div>
+
+        <span class="label-sm">Поточний показник (ADC)</span>
+        <div class="meter-box">
+          <div class="meter-val" id="valDisplay">0</div>
+          <div class="meter-sub" id="statusDisplay">Струму немає</div>
+          <div class="timer-banner" id="timerBanner"></div>
+        </div>
+
+        <button class="btn" id="recordBtn">Записати замір</button>
+        <button class="btn btn-outline" id="openReportBtn" style="display:none;">Показати звіт →</button>
+      </div>
+
+      <div class="panel">
+        <span class="label-sm">Сигнал у часі (0–1023)</span>
+        <canvas id="chart" height="235"></canvas>
+      </div>
+    </div>
+
+    <div id="resultsScreen">
+      <div class="report-header">
+        <h2>Зведені результати вимірювань</h2>
+        <button class="btn btn-outline btn-back" id="backBtn">← Повернутися до приладу</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Досліджуваний розчин</th>
+            <th>Середнє значення</th>
+            <th>Рівень сигналу</th>
+            <th>Характер провідності</th>
+          </tr>
+        </thead>
+        <tbody id="reportBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
